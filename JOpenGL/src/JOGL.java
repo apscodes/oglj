@@ -20,7 +20,7 @@ import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL30.*;
 import static org.lwjgl.system.MemoryUtil.*;
 
-public class Lab03Stage2 {
+public class JOGL {
 	private FloatBuffer mModelMatrixFB;
 	private Mat4f mModelMatrix;
 	private int mIndexBufferId;
@@ -100,7 +100,7 @@ public class Lab03Stage2 {
     
 	
 	
-	public Lab03Stage2(){
+	public JOGL(){
 		System.out.println( "LWJGL version: " + Sys.getVersion() ); 
 	}
 	
@@ -277,30 +277,33 @@ public class Lab03Stage2 {
 		}
 	}
 	public void cleanUp(){
-		// Destory the window created
+		// Destroy the window created
 		glfwDestroyWindow(mWindowId);
 
 		// Release the error Call back
 		errorCallback.release();
 
-		// terminate the glfw context
+		// terminate the GLFW context
 		glfwTerminate();
 	}
 	public static void main(String[] args) {
 		
 		// Create instance of our Lab
-		Lab03Stage2 lab = new Lab03Stage2();
+		JOGL jOpenGL = new JOGL();
 		
 		try
         {        
-			// Initialise the lab
-			lab.init();
+			// Initialize the lab
+			jOpenGL.init();
 			
 			// Run the main loop
-			lab.mainLoop();
+			jOpenGL.mainLoop();
 			
 			// Clean up after our lab
-			lab.cleanUp();
+			jOpenGL.cleanUp();
+			
+			//*! Memory Clean up
+			jOpenGL = null;		
         }
         finally
         {
